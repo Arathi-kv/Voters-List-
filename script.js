@@ -23,22 +23,21 @@ function showAllMembers() {
 function renderGrid(dataArray) {
     let html = dataArray.map(person => `
        <div class="person-card">
-    <h3 style="text-align:center; margin-bottom:10px;">
-        Local Body: ${person.LocalBody} <br>
-        Polling Station: ${person.PollingStation}
-    </h3>
+        <h3 style="text-align:center; margin-bottom:10px;">
+            Local Body: ${person["Local Body"]} <br>
+            Polling Station: ${person["Polling Station"]}
+        </h3>
 
-    <p><strong>Name:</strong> ${person.Name}</p>
-    <p><strong>W No/H No.:</strong> ${person.HouseNumber}</p>
-    <p><strong>Guardian's Name:</strong> ${person.GuardianName}</p>
-    <p><strong>House Name:</strong> ${person.HouseName}</p>
-    <p><strong>Gender/Age:</strong> ${person.Gender} / ${person.Age}</p>
-    <p><strong>ID Card No.:</strong> ${person.IDCard}</p>
-</div>
-
+        <p><strong>Name:</strong> ${person["Name"]}</p>
+        <p><strong>W No/H No.:</strong> ${person["W No/H No."]}</p>
+        <p><strong>Guardian's Name:</strong> ${person["Guardian's Name"]}</p>
+        <p><strong>House Name:</strong> ${person["House Name"]}</p>
+        <p><strong>Gender/Age:</strong> ${person["Gender"]} / ${person["Age"]}</p>
+        <p><strong>ID Card No.:</strong> ${person["ID Card No."]}</p>
+       </div>
     `).join("");
 
-    if(!html) html = "<p>No member found.</p>";
+    if (!html) html = "<p>No member found.</p>";
     resultDiv.innerHTML = html;
 }
 
@@ -50,18 +49,19 @@ searchInput.addEventListener("keyup", () => {
         return;
     }
 
-    const filtered = sheetData.filter(person => 
-        person.VoterID.toLowerCase().includes(query) || 
-        person.Name.toLowerCase().includes(query)
+    const filtered = sheetData.filter(person =>
+        person["ID Card No."].toLowerCase().includes(query) ||
+        person["Name"].toLowerCase().includes(query)
     );
 
     displayedData = filtered;
     renderGrid(displayedData);
 });
 
-// Print functionality
+// Print
 printBtn.addEventListener("click", () => {
     const printWindow = window.open("", "", "width=800,height=600");
+
     const styles = `
         <style>
             body { font-family: Arial; padding: 20px; }
@@ -72,24 +72,25 @@ printBtn.addEventListener("click", () => {
     `;
 
     let html = `<div class="grid">`;
+
     displayedData.forEach(person => {
         html += `
-           <div class="person-card">
-    <h3 style="text-align:center; margin-bottom:10px;">
-        Local Body: ${person.LocalBody} <br>
-        Polling Station: ${person.PollingStation}
-    </h3>
+            <div class="person-card">
+                <h3 style="text-align:center; margin-bottom:10px;">
+                    Local Body: ${person["Local Body"]} <br>
+                    Polling Station: ${person["Polling Station"]}
+                </h3>
 
-    <p><strong>Name:</strong> ${person.Name}</p>
-    <p><strong>W No/H No.:</strong> ${person.HouseNumber}</p>
-    <p><strong>Guardian's Name:</strong> ${person.GuardianName}</p>
-    <p><strong>House Name:</strong> ${person.HouseName}</p>
-    <p><strong>Gender/Age:</strong> ${person.Gender} / ${person.Age}</p>
-    <p><strong>ID Card No.:</strong> ${person.IDCard}</p>
-</div>
-
+                <p><strong>Name:</strong> ${person["Name"]}</p>
+                <p><strong>W No/H No.:</strong> ${person["W No/H No."]}</p>
+                <p><strong>Guardian's Name:</strong> ${person["Guardian's Name"]}</p>
+                <p><strong>House Name:</strong> ${person["House Name"]}</p>
+                <p><strong>Gender/Age:</strong> ${person["Gender"]} / ${person["Age"]}</p>
+                <p><strong>ID Card No.:</strong> ${person["ID Card No."]}</p>
+            </div>
         `;
     });
+
     html += `</div>`;
 
     printWindow.document.write(styles + html);
