@@ -11,6 +11,7 @@ fetch(sheetURL)
     .then(res => res.json())
     .then(data => {
         sheetData = data;
+        console.log(sheetData[0]); // For debugging: check exact keys
         showAllMembers();
     });
 
@@ -25,8 +26,8 @@ function renderGrid(dataArray) {
     let html = dataArray.map(person => `
        <div class="person-card">
         <h3>
-            Local Body: ${person["Local Body"]} <br>
-            Polling Station: ${person["Polling Station"]}
+            Local Body: ${person["LocalBody"]} <br>
+            Polling Station: ${person["PollingStation"]}
         </h3>
 
         <p><strong>Name:</strong> ${person["Name"]}</p>
@@ -69,8 +70,8 @@ printBtn.addEventListener("click", () => {
         html += `
             <div class="person-card">
                 <h3>
-                    Local Body: ${person["Local Body"]} <br>
-                    Polling Station: ${person["Polling Station"]}
+                    Local Body: ${person["LocalBody"]} <br>
+                    Polling Station: ${person["PollingStation"]}
                 </h3>
 
                 <p><strong>Name:</strong> ${person["Name"]}</p>
