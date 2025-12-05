@@ -32,7 +32,7 @@ function renderGrid(dataArray) {
         <p><strong>W No/H No.:</strong> ${person["W No/H No."]}</p>
         <p><strong>Guardian's Name:</strong> ${person["Guardian's Name"]}</p>
         <p><strong>House Name:</strong> ${person["House Name"]}</p>
-        <p><strong>Gender/Age:</strong> ${person["Gender"]} / ${person["Age"]}</p>
+        <p><strong>Gender/Age:</strong> ${person["Gender / Age"]}</p>
         <p><strong>ID Card No.:</strong> ${person["ID Card No."]}</p>
        </div>
     `).join("");
@@ -85,7 +85,7 @@ printBtn.addEventListener("click", () => {
                 <p><strong>W No/H No.:</strong> ${person["W No/H No."]}</p>
                 <p><strong>Guardian's Name:</strong> ${person["Guardian's Name"]}</p>
                 <p><strong>House Name:</strong> ${person["House Name"]}</p>
-                <p><strong>Gender/Age:</strong> ${person["Gender"]} / ${person["Age"]}</p>
+                <p><strong>Gender/Age:</strong> ${person["Gender / Age"]}</p>
                 <p><strong>ID Card No.:</strong> ${person["ID Card No."]}</p>
             </div>
         `;
