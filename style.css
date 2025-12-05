@@ -5,8 +5,8 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on website */
+    gap: 30px;
 }
 
 .person-card {
@@ -45,13 +45,13 @@ input[type="text"] {
 
 @media (max-width: 900px) {
     .grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); /* same for medium screens */
     }
 }
 
 @media (max-width: 500px) {
     .grid {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(1, 1fr); /* 1 column on small screens */
     }
 }
 
@@ -64,8 +64,8 @@ input[type="text"] {
         display: none;
     }
     .grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for print */
+        gap: 30px;
     }
     .person-card {
         page-break-inside: avoid; /* Prevent a card from breaking across pages */

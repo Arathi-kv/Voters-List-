@@ -24,18 +24,17 @@ function showAllMembers() {
 function renderGrid(dataArray) {
     let html = dataArray.map(person => `
         <div class="person-card">
-            <h3>${person.Name}</h3>
+            <h3>Ward: ${person.Ward} | Booth: ${person.Booth}</h3>
+            <p><strong>Name:</strong> ${person.Name}</p>
             <p><strong>Voter ID:</strong> ${person.VoterID}</p>
             <p><strong>Age:</strong> ${person.Age}</p>
-            <p><strong>Ward:</strong> ${person.Ward}</p>
             <p><strong>Address:</strong> ${person.Address}</p>
         </div>
     `).join("");
-    
+
     if(!html) html = "<p>No member found.</p>";
     resultDiv.innerHTML = html;
 }
-
 // Search function
 searchInput.addEventListener("keyup", () => {
     const query = searchInput.value.toLowerCase().trim();
@@ -69,10 +68,10 @@ printBtn.addEventListener("click", () => {
     displayedData.forEach(person => {
         html += `
             <div class="person-card">
-                <h3>${person.Name}</h3>
+                <h3>Ward: ${person.Ward} | Booth: ${person.Booth}</h3>
+                <p><strong>Name:</strong> ${person.Name}</p>
                 <p><strong>Voter ID:</strong> ${person.VoterID}</p>
                 <p><strong>Age:</strong> ${person.Age}</p>
-                <p><strong>Ward:</strong> ${person.Ward}</p>
                 <p><strong>Address:</strong> ${person.Address}</p>
             </div>
         `;
