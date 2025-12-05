@@ -11,7 +11,7 @@ fetch(sheetURL)
     .then(res => res.json())
     .then(data => {
         sheetData = data;
-        console.log(sheetData[0]); // For debugging: check exact keys
+        console.log(sheetData[0]); // check headers
         showAllMembers();
     });
 
@@ -36,6 +36,7 @@ function renderGrid(dataArray) {
         <p><strong>House Name:</strong> ${person["House Name"]}</p>
         <p><strong>Gender/Age:</strong> ${person["Gender/Age"]}</p>
         <p><strong>ID Card No.:</strong> ${person["ID Card No."]}</p>
+        <p><strong>Ward:</strong> ${person["Ward"]}</p>
        </div>
     `).join("");
 
@@ -80,6 +81,7 @@ printBtn.addEventListener("click", () => {
                 <p><strong>House Name:</strong> ${person["House Name"]}</p>
                 <p><strong>Gender/Age:</strong> ${person["Gender/Age"]}</p>
                 <p><strong>ID Card No.:</strong> ${person["ID Card No."]}</p>
+                <p><strong>Ward:</strong> ${person["Ward"]}</p>
             </div>
         `;
     });
