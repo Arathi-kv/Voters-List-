@@ -6,7 +6,7 @@ const searchInput = document.getElementById("searchInput");
 const printBtn = document.getElementById("printBtn");
 const resultDiv = document.getElementById("result");
 
-// Load data from Google Sheet
+// Load data
 fetch(sheetURL)
     .then(res => res.json())
     .then(data => {
@@ -14,17 +14,20 @@ fetch(sheetURL)
         showAllMembers();
     });
 
-// Show all members
 function showAllMembers() {
     displayedData = sheetData;
     renderGrid(displayedData);
 }
 
-// Render grid for given array
+// Render cards
 function renderGrid(dataArray) {
     let html = dataArray.map(person => `
         <div class="person-card">
-            <h3>Ward: ${person.Ward} | Booth: ${person.Booth}</h3>
+            <h3>
+                District: ${person.District} |
+                Local Body: ${person.LocalBody} |
+                Polling Station: ${person.PollingStation}
+            </h3>
             <p><strong>Name:</strong> ${person.Name}</p>
             <p><strong>Voter ID:</strong> ${person.VoterID}</p>
             <p><strong>Age:</strong> ${person.Age}</p>
@@ -35,7 +38,8 @@ function renderGrid(dataArray) {
     if(!html) html = "<p>No member found.</p>";
     resultDiv.innerHTML = html;
 }
-// Search function
+
+// Search functionality
 searchInput.addEventListener("keyup", () => {
     const query = searchInput.value.toLowerCase().trim();
     if (!query) {
@@ -52,15 +56,15 @@ searchInput.addEventListener("keyup", () => {
     renderGrid(displayedData);
 });
 
-// Print all displayed cards
+// Print functionality
 printBtn.addEventListener("click", () => {
     const printWindow = window.open("", "", "width=800,height=600");
     const styles = `
         <style>
             body { font-family: Arial; padding: 20px; }
-            .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .grid { display: grid; grid-template-columns: repeat(2, 1fr); row-gap: 40px; column-gap: 30px; }
             .person-card { border: 1px solid #ccc; padding: 15px; border-radius: 8px; background: #f9f9f9; page-break-inside: avoid; }
-            .person-card h3 { margin: 0 0 10px; font-size: 18px; }
+            .person-card h3 { margin: 0 0 10px; font-size: 16px; text-align: center; }
         </style>
     `;
 
@@ -68,7 +72,12 @@ printBtn.addEventListener("click", () => {
     displayedData.forEach(person => {
         html += `
             <div class="person-card">
-                <h3>Ward: ${person.Ward} | Booth: ${person.Booth}</h3>
+                <h3>
+                    Ward: ${person.Ward} |
+                    District: ${person.District} |
+                    Local Body: ${person.LocalBody} |
+                    Polling Station: ${person.PollingStation}
+                </h3>
                 <p><strong>Name:</strong> ${person.Name}</p>
                 <p><strong>Voter ID:</strong> ${person.VoterID}</p>
                 <p><strong>Age:</strong> ${person.Age}</p>

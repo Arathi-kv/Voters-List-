@@ -3,10 +3,15 @@ body {
     padding: 20px; 
 }
 
+h2 {
+    text-align: center;
+}
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on website */
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 40px;
+    column-gap: 30px;
 }
 
 .person-card {
@@ -18,7 +23,8 @@ body {
 
 .person-card h3 {
     margin: 0 0 10px;
-    font-size: 18px;
+    font-size: 16px;
+    text-align: center;
 }
 
 .btn {
@@ -45,29 +51,25 @@ input[type="text"] {
 
 @media (max-width: 900px) {
     .grid {
-        grid-template-columns: repeat(2, 1fr); /* same for medium screens */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 500px) {
     .grid {
-        grid-template-columns: repeat(1, 1fr); /* 1 column on small screens */
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
-/* Print style: 2 columns, prevent card breaks */
+/* Print styles */
 @media print {
-    body {
-        padding: 0;
-    }
-    .btn, #searchInput {
-        display: none;
-    }
+    body { padding: 0; }
+    .btn, #searchInput { display: none; }
     .grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for print */
-        gap: 30px;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 40px;
+        column-gap: 30px;
     }
-    .person-card {
-        page-break-inside: avoid; /* Prevent a card from breaking across pages */
-    }
+    .person-card { page-break-inside: avoid; }
+    .person-card h3 { text-align: center; }
 }
