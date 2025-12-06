@@ -10,7 +10,7 @@ body {
 #result {
     display: grid;
     grid-template-columns: 1fr 1fr;  /* 2 cards per row */
-    gap: 10px;
+    gap: 15px;
     width: 100%;
     align-items: start;  /* ensures all cards align at top */
 }
@@ -74,7 +74,7 @@ body {
 
     #result {
         grid-template-columns: 1fr 1fr;  /* 2 cards per row for print */
-        gap: 10px;
+        gap: 20px;
         width: 100%;
         align-items: start;
     }
