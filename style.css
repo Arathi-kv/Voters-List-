@@ -10,7 +10,7 @@ body {
 #result {
     display: grid;
     grid-template-columns: 1fr 1fr;  /* 2 cards per row */
-    gap: 20px;
+    gap: 5px;
     width: 100%;
     align-items: start;  /* ensures all cards align at top */
 }
@@ -35,13 +35,14 @@ body {
     justify-content: space-between;
     margin-bottom: 12px;
     font-weight: bold;
-    min-height: 24px; /* same header height across cards */
+    min-height: 12px; /* same header height across cards */
+    font-size: 0.75rem;
 }
 
 /* ------------------- INFO ROWS ------------------- */
 .info-row {
     display: flex;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
     align-items: flex-start;
 }
 
@@ -49,14 +50,14 @@ body {
     min-width: 100px;  /* uniform width across all cards */
     font-weight: bold;
     text-align: left;
+    font-size: 0.75em;
 }
 
 .value {
     flex: 1; /* fill remaining space */
     overflow-wrap: break-word;
+    font-size: 0.75em;
 }
-
-
 
 /* ------------------- RESPONSIVE ------------------- */
 @media (max-width: 700px) {
@@ -73,7 +74,7 @@ body {
 
     #result {
         grid-template-columns: 1fr 1fr;  /* 2 cards per row for print */
-        gap: 20px;
+        gap: 5px;
         width: 100%;
         align-items: start;
     }
