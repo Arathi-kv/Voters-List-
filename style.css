@@ -90,3 +90,29 @@ body {
 .booth-number {
     font-weight: bold;
 }
+/* Standard info row */
+.info-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+/* Labels */
+.info-row .label {
+    font-weight: bold;
+    min-width: 60px; /* ensures colons align */
+}
+
+/* Values */
+.info-row .value {
+    flex: 1;
+}
+
+/* Special row for Sl.No + V.ID */
+.slno-id-row .vlabel {
+    margin-left: auto;  /* push V.ID to the right */
+}
+
+.slno-id-row .vid {
+    flex: 0; /* do not stretch value */
+}
