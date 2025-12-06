@@ -87,6 +87,25 @@ body {
         justify-content: flex-start;
     }
 }
+/* ------------------- person-card ------------------- */
 .booth-number {
     font-weight: bold;
+}
+@media (min-width: 1024px) {
+    .slno-id-row {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .desktop-spacer {
+        flex: 1;
+    }
+
+    .id-value {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-align: right;
+        white-space: nowrap;
+    }
 }

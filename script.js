@@ -26,20 +26,22 @@ function renderGrid(dataArray) {
     if (!html) html = "<p>No member found.</p>";
     resultDiv.innerHTML = html;
 }
-
-// slip card 
+// Slip card 
 function createCard(person, index) {
     return `
-          <div class="person-card">
-    <div class="info-row">
-        <!-- Sl.No -->
-        <div class="label">Sl.No</div>
-        <div class="value">: ${index + 1}</div>
+        <div class="person-card">
 
-        <!-- V.ID aligned right -->
-        <div class="label" style="margin-left:auto;"></div>
-        <div class="value"> ${person["ID Card No."]}</div>
-    </div>
+            <!-- Sl.No and ID in same row -->
+            <div class="info-row slno-id-row">
+                <div class="label">Sl.No</div>
+                <div class="value">: ${index + 1}</div>
+
+                <!-- Desktop spacer -->
+                <div class="desktop-spacer"></div>
+
+                <!-- Only the ID number (right aligned for desktop) -->
+                <div class="id-value">${person["ID Card No."]}</div>
+            </div>
 
             <div class="info-row">
                 <div class="label">പേര്</div>
@@ -58,7 +60,8 @@ function createCard(person, index) {
 
             <div class="info-row">
                 <div class="label">ബൂത്ത്</div>
-                <div class="value">: ${person["PollingStation"].replace(/(\d+)/, '<span class="booth-number">$1</span>')}
+                <div class="value">
+                    : ${person["PollingStation"].replace(/(\d+)/, '<span class="booth-number">$1</span>')}
                 </div>
             </div>
 
@@ -66,10 +69,10 @@ function createCard(person, index) {
                 <div class="label">വാർഡ്</div>
                 <div class="value">: ${person["Ward"]}</div>
             </div>
+
         </div>
     `;
 }
-
 
 // Print All
 printBtn.addEventListener("click", () => {
