@@ -31,7 +31,7 @@ function createCard(person, index) {
     return `
         <div class="person-card">
 
-            <!-- Sl.No and ID in same row -->
+        <!-- Sl.No and ID in same row -->
             <div class="info-row slno-id-row">
                 <div class="label">Sl.No</div>
                 <div class="value">: ${index + 1}</div>
@@ -43,6 +43,7 @@ function createCard(person, index) {
                 <div class="id-value">${person["ID Card No."]}</div>
             </div>
 
+        <!--  Person detail row-->
             <div class="info-row">
                 <div class="label">പേര്</div>
                 <div class="value">: ${person["Name"]}</div>
