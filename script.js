@@ -6,12 +6,11 @@ const searchInput = document.getElementById("searchInput");
 const printBtn = document.getElementById("printBtn");
 const resultDiv = document.getElementById("result");
 
-// Load data from Google Sheet
+// Load data
 fetch(sheetURL)
     .then(res => res.json())
     .then(data => {
         sheetData = data;
-        console.log(sheetData[0]); // check headers
         showAllMembers();
     });
 
@@ -23,71 +22,61 @@ function showAllMembers() {
 
 // Render cards
 function renderGrid(dataArray) {
-    let html = dataArray.map(person => `
-       <div class="person-card">
-        <h3>
-            Local Body: ${person["LocalBody"]} <br>
-            Polling Station: ${person["PollingStation"]}
-        </h3>
-
-        <p><strong>Name:</strong> ${person["Name"]}</p>
-        <p><strong>W No/H No.:</strong> ${person["W No/H No."]}</p>
-        <p><strong>Guardian's Name:</strong> ${person["Guardian's Name"]}</p>
-        <p><strong>House Name:</strong> ${person["House Name"]}</p>
-        <p><strong>Gender/Age:</strong> ${person["Gender/Age"]}</p>
-        <p><strong>ID Card No.:</strong> ${person["ID Card No."]}</p>
-        <p><strong>Ward:</strong> ${person["Ward"]}</p>
-       </div>
-    `).join("");
-
+    let html = dataArray.map((person, index) => createCard(person, index)).join("");
     if (!html) html = "<p>No member found.</p>";
     resultDiv.innerHTML = html;
 }
 
-// Search functionality
-searchInput.addEventListener("keyup", () => {
-    const query = searchInput.value.toLowerCase().trim();
-    if (!query) {
-        showAllMembers();
-        return;
-    }
+// slip card 
+function createCard(person, index) {
+    return `
+        <div class="person-card">
 
-    const filtered = sheetData.filter(person =>
-        person["ID Card No."].toLowerCase().includes(query) ||
-        person["Name"].toLowerCase().includes(query)
-    );
+            <div class="header-row">
+                <div>Sl.No: ${index + 1}</div>
+                <div>V.ID: ${person["ID Card No."]}</div>
+            </div>
 
-    displayedData = filtered;
-    renderGrid(displayedData);
-});
+            <div class="info-row">
+                <div class="label">പേര്</div>
+                <div class="value">: ${person["Name"]}</div>
+            </div>
 
-// Print functionality
+            <div class="info-row">
+                <div class="label">രക്ഷിതാവ്</div>
+                <div class="value">: ${person["Guardian's Name"]}</div>
+            </div>
+
+            <div class="info-row">
+                <div class="label">വീട്</div>
+                <div class="value">: ${person["House Name"]}</div>
+            </div>
+
+            <div class="info-row">
+                <div class="label">ബൂത്ത്</div>
+                <div class="value">: ${person["PollingStation"]}</div>
+            </div>
+
+            <div class="info-row">
+                <div class="label">വാർഡ്</div>
+                <div class="value">: ${person["Ward"]}</div>
+            </div>
+        </div>
+    `;
+}
+
+
+// Print All
 printBtn.addEventListener("click", () => {
     const printWindow = window.open("", "", "width=800,height=600");
+    let html = `<link rel="stylesheet" href="style.css">`;
+    html += `<div class="grid">`;
 
-    let html = `<div class="grid">`;
-
-    displayedData.forEach(person => {
-        html += `
-            <div class="person-card">
-                <h3>
-                    Local Body: ${person["LocalBody"]} <br>
-                    Polling Station: ${person["PollingStation"]}
-                </h3>
-
-                <p><strong>Name:</strong> ${person["Name"]}</p>
-                <p><strong>W No/H No.:</strong> ${person["W No/H No."]}</p>
-                <p><strong>Guardian's Name:</strong> ${person["Guardian's Name"]}</p>
-                <p><strong>House Name:</strong> ${person["House Name"]}</p>
-                <p><strong>Gender/Age:</strong> ${person["Gender/Age"]}</p>
-                <p><strong>ID Card No.:</strong> ${person["ID Card No."]}</p>
-                <p><strong>Ward:</strong> ${person["Ward"]}</p>
-            </div>
-        `;
+    displayedData.forEach((person, index) => {
+        html += createCard(person, index);
     });
 
     html += `</div>`;
-
     printWindow.document.write(html);
     printWindow.document.close();
     printWindow.print();

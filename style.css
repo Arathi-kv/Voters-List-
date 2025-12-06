@@ -1,75 +1,88 @@
-body { 
-    font-family: Arial; 
-    padding: 20px; 
+/* ------------------- GLOBAL ------------------- */
+body {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    padding: 20px;
+    background: #f7f7f7;
+    margin: 0;
 }
 
-h2 {
-    text-align: center;
-}
-
-.grid {
+/* ------------------- GRID LAYOUT ------------------- */
+#result {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 40px;
-    column-gap: 30px;
+    grid-template-columns: 1fr 1fr;  /* 2 cards per row */
+    gap: 20px;
+    width: 100%;
+    align-items: start;  /* ensures all cards align at top */
 }
 
+/* ------------------- CARD ------------------- */
 .person-card {
-    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* top-aligned content */
+    border: 1px solid #666;
     padding: 15px;
-    border-radius: 8px;
-    background: #f9f9f9;
-}
-
-.person-card h3 {
-    margin: 0 0 10px;
+    border-radius: 10px;
+    background: #fff;
+    box-sizing: border-box;
     font-size: 16px;
-    text-align: center;
+    height: 100%;  /* makes cards same height in row */
 }
 
-.btn {
-    padding: 8px 15px;
-    background: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 8px;
+/* ------------------- HEADER ROW ------------------- */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-weight: bold;
+    min-height: 24px; /* same header height across cards */
 }
 
-.btn:hover {
-    background: #0056b3;
+/* ------------------- INFO ROWS ------------------- */
+.info-row {
+    display: flex;
+    margin-bottom: 6px;
+    align-items: flex-start;
 }
 
-input[type="text"] {
-    padding: 8px;
-    width: 250px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+.label {
+    min-width: 100px;  /* uniform width across all cards */
+    font-weight: bold;
+    text-align: left;
 }
 
-@media (max-width: 900px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
+.value {
+    flex: 1; /* fill remaining space */
+    overflow-wrap: break-word;
+}
+
+
+
+/* ------------------- RESPONSIVE ------------------- */
+@media (max-width: 700px) {
+    #result {
+        grid-template-columns: 1fr; /* 1 card per row on mobile */
     }
 }
 
-@media (max-width: 500px) {
-    .grid {
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
-
-/* Print styles */
+/* ------------------- PRINT FIX ------------------- */
 @media print {
     body { padding: 0; }
-    .btn, #searchInput { display: none; }
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-        row-gap: 40px;
-        column-gap: 30px;
+
+    input, .btn { display: none; }
+
+    #result {
+        grid-template-columns: 1fr 1fr;  /* 2 cards per row for print */
+        gap: 20px;
+        width: 100%;
+        align-items: start;
     }
-    .person-card { page-break-inside: avoid; }
-    .person-card h3 { text-align: center; }
+
+    .person-card {
+        page-break-inside: avoid;
+        border: 1px solid #000;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
 }
