@@ -74,7 +74,7 @@ body {
 
     #result {
         grid-template-columns: 1fr 1fr;  /* 2 cards per row for print */
-        gap: 5px;
+        gap: 8px;
         width: 100%;
         align-items: start;
     }
