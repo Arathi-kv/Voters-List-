@@ -29,13 +29,13 @@ body {
     height: 100%;  /* makes cards same height in row */
 }
 
-/* ------------------- HEADER ROW ------------------- */
-.header-row {
+/* -----------------/* ------------------- HEADER ROW (Right-aligned V.ID) ------------------- */
+.header-row-right {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
+    justify-content: flex-end; /* aligns content to the right */
     font-weight: bold;
-    min-height: 12px; /* same header height across cards */
+    margin-bottom: 12px;
+    min-height: 24px;  /* same header height across cards */
     font-size: 0.75rem;
 }
 
@@ -47,7 +47,7 @@ body {
 }
 
 .label {
-    min-width: 100px;  /* uniform width across all cards */
+    min-width: 80px;  /* uniform width across all cards */
     font-weight: bold;
     text-align: left;
     font-size: 0.75em;
@@ -86,4 +86,7 @@ body {
         flex-direction: column;
         justify-content: flex-start;
     }
+}
+.booth-number {
+    font-weight: bold;
 }

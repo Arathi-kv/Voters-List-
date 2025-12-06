@@ -30,12 +30,16 @@ function renderGrid(dataArray) {
 // slip card 
 function createCard(person, index) {
     return `
-        <div class="person-card">
+          <div class="person-card">
+    <div class="info-row">
+        <!-- Sl.No -->
+        <div class="label">Sl.No</div>
+        <div class="value">: ${index + 1}</div>
 
-            <div class="header-row">
-                <div>Sl.No: ${index + 1}</div>
-                <div>V.ID: ${person["ID Card No."]}</div>
-            </div>
+        <!-- V.ID aligned right -->
+        <div class="label" style="margin-left:auto;"></div>
+        <div class="value"> ${person["ID Card No."]}</div>
+    </div>
 
             <div class="info-row">
                 <div class="label">പേര്</div>
@@ -54,7 +58,8 @@ function createCard(person, index) {
 
             <div class="info-row">
                 <div class="label">ബൂത്ത്</div>
-                <div class="value">: ${person["PollingStation"]}</div>
+                <div class="value">: ${person["PollingStation"].replace(/(\d+)/, '<span class="booth-number">$1</span>')}
+                </div>
             </div>
 
             <div class="info-row">
