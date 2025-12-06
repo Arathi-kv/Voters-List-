@@ -1,4 +1,4 @@
-const sheetURL = "https://opensheet.elk.sh/1G38BBMCNl2JeGS4JXOfFcWn9PaFD2YyCEcSLpzhL01I/Sheet1";
+const sheetURL = "https://opensheet.elk.sh/1eMlL4yuPMpLFM-k8lxu3tg2NJGka8WbFA2ef3zmD5_c/BOOTH 1";
 let sheetData = [];
 let displayedData = [];
 
@@ -34,7 +34,7 @@ function createCard(person, index) {
         <!-- Sl.No and ID in same row -->
             <div class="info-row slno-id-row">
                 <div class="label">Sl.No</div>
-                <div class="value">: ${index + 1}</div>
+                <div class="value">:<b> ${index + 1}</b></div>
 
                 <!-- Desktop spacer -->
                 <div class="desktop-spacer"></div>
@@ -46,7 +46,7 @@ function createCard(person, index) {
         <!--  Person detail row-->
             <div class="info-row">
                 <div class="label">പേര്</div>
-                <div class="value">: ${person["Name"]}</div>
+                 <div class="value">: <b>${person["Name"]}</b></div>
             </div>
 
             <div class="info-row">
