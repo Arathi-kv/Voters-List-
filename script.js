@@ -30,15 +30,17 @@ function renderGrid(dataArray) {
 // slip card 
 function createCard(person, index) {
     return `
-         <div class="person-card">
-    <!-- Single row for Sl.No and V.ID -->
-    <div class="info-row slno-id-row">
+          <div class="person-card">
+    <div class="info-row">
+        <!-- Sl.No -->
         <div class="label">Sl.No</div>
         <div class="value">: ${index + 1}</div>
 
-        <div class="label vlabel"></div>
-        <div class="value vid">${person["ID Card No."]}</div>
+        <!-- V.ID aligned right -->
+        <div class="label" style="margin-left:auto;"></div>
+        <div class="value"> ${person["ID Card No."]}</div>
     </div>
+
             <div class="info-row">
                 <div class="label">പേര്</div>
                 <div class="value">: ${person["Name"]}</div>
